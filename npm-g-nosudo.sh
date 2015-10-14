@@ -140,11 +140,15 @@ echo_env() {
 
 printf "\n\n"
 read -p "Do you wish to update your .bashrc/.zshrc file(s) with the paths and manpaths? [yn] " yn
-case $yn in
-    [Yy]* ) fix_env;;
-    [Nn]* ) echo_env;;
-    * ) echo "Please answer 'y' or 'n'.";;
-esac
+if [$yn -eq [Yn]]
+then 
+   fix_env;;
+elif [$yn -eq [Nn]]
+then 
+   echo_env;;   
+else
+   echo "Please answer 'y' or 'n'.";;
+fi
 
 rm $to_reinstall
 
